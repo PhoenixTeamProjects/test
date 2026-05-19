@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="bg5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#1e3a5f"/><stop offset="100%" style="stop-color:#2c5282"/></linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#bg5)"/>
+  <!-- Spring leaves - stacked -->
+  <g stroke="#9ca3af" stroke-width="2" fill="#6b7280">
+    <rect x="30" y="120" width="340" height="20" rx="3"/>
+    <rect x="40" y="145" width="320" height="18" rx="3"/>
+    <rect x="50" y="168" width="300" height="16" rx="3"/>
+    <rect x="60" y="189" width="280" height="14" rx="3"/>
+    <rect x="70" y="208" width="260" height="12" rx="3"/>
+    <rect x="80" y="225" width="240" height="10" rx="3"/>
+  </g>
+  <!-- Center bolt -->
+  <circle cx="200" cy="180" r="12" fill="#f97316"/>
+  <circle cx="200" cy="180" r="6" fill="#1f2937"/>
+  <!-- U-bolts -->
+  <g fill="#374151" stroke="#4b5563" stroke-width="2">
+    <rect x="90" y="110" width="12" height="130" rx="3"/>
+    <rect x="298" y="110" width="12" height="130" rx="3"/>
+  </g>
+  <!-- End clips -->
+  <rect x="25" y="115" width="15" height="25" rx="2" fill="#4b5563"/>
+  <rect x="360" y="115" width="15" height="25" rx="2" fill="#4b5563"/>
+  <text x="200" y="370" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold">LEAF SPRING ASSEMBLY</text>
+</svg>

@@ -12,6 +12,7 @@ export default function Header() {
     { href: '/applications', label: 'Applications' },
     { href: '/about', label: 'About' },
     { href: '/contact', label: 'Contact' },
+    { href: '/news', label: 'News' },
   ]
 
   return (

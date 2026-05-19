@@ -1,9 +1,35 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import WhatsAppButton from '@/components/common/WhatsAppButton'
 
 export const metadata: Metadata = {
-  title: 'Huanyu Kuntai - Truck & Construction Machinery Parts Exporter',
-  description: 'Professional exporter of truck parts, construction machinery components, and heavy-duty equipment. Serving global markets with quality parts.',
+  metadataBase: new URL('https://huanyukuntai.com'),
+  title: {
+    default: 'Huanyu Kuntai - Truck & Construction Machinery Parts Exporter',
+    template: '%s | Huanyu Kuntai',
+  },
+  description: 'Professional exporter of truck parts, construction machinery components, and heavy-duty equipment. Engine parts, brake systems, suspension and electrical systems. Serving global markets since 2010.',
+  keywords: ['truck parts', 'construction machinery parts', 'heavy duty parts', 'engine parts', 'brake systems', 'China exporter', 'B2B parts supplier'],
+  authors: [{ name: 'Huanyu Kuntai' }],
+  creator: 'Huanyu Kuntai',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://huanyukuntai.com',
+    siteName: 'Huanyu Kuntai',
+    title: 'Huanyu Kuntai - Truck & Construction Machinery Parts Exporter',
+    description: 'Professional exporter of truck parts and construction machinery components.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Huanyu Kuntai - Industrial Parts Exporter',
+    description: 'Quality truck parts and construction machinery components from China.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -16,6 +42,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen flex flex-col">
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   )

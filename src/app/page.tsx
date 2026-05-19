@@ -1,45 +1,64 @@
 import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 import Link from 'next/link'
-import { ArrowRight, Shield, Truck, Award, Users, CheckCircle } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight, Shield, Truck, Award, Users } from 'lucide-react'
+import { products } from '@/data/products'
 
 export default function HomePage() {
+  const featuredProducts = products.slice(0, 4)
+
   return (
     <>
       <Header />
 
       {/* ========== HERO SECTION ========== */}
-      {/* 👉 修改Hero背景图：替换下方的 bg-[#1e3a5f] 为 img 标签覆盖 */}
       <section className="bg-[#1e3a5f] text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)' }} />
         </div>
         <div className="max-w-7xl mx-auto px-4 py-20 md:py-28 relative">
           <div className="max-w-3xl">
-            {/* 👉 修改标题文字 */}
+            <div className="inline-flex items-center px-4 py-2 bg-white/10 rounded-full mb-6 text-sm">
+              <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
+              15+ Years of Industrial Parts Export Experience
+            </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
               Heavy-Duty Truck Parts &<br />
               <span className="text-[#f97316]">Construction Machinery</span> Export Expert
             </h1>
-            {/* 👉 修改副标题 */}
             <p className="text-lg md:text-xl text-slate-300 mb-8 leading-relaxed">
-              Professional exporter of engine parts, brake systems, suspension components and electrical systems. 
+              Professional exporter of engine parts, brake systems, suspension components and electrical systems.
               Serving global clients with quality parts since 2010.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/products" className="bg-[#f97316] hover:bg-[#fb923c] text-white font-semibold px-8 py-4 rounded-lg transition-colors flex items-center gap-2">
+              <Link href="/products" className="bg-[#f97316] hover:bg-[#fb923c] text-white font-semibold px-8 py-4 rounded-lg transition-colors flex items-center gap-2 shadow-lg">
                 View Products <ArrowRight className="w-5 h-5" />
               </Link>
               <Link href="/contact" className="border-2 border-white/30 hover:border-white/60 text-white font-semibold px-8 py-4 rounded-lg transition-colors">
                 Get a Quote
               </Link>
             </div>
+
+            {/* Stats */}
+            <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6">
+              {[
+                { value: '15+', label: 'Years Experience' },
+                { value: '50+', label: 'Countries Served' },
+                { value: '1000+', label: 'Products' },
+                { value: '99%', label: 'Client Satisfaction' },
+              ].map((stat, i) => (
+                <div key={i}>
+                  <div className="text-3xl font-bold text-[#f97316]">{stat.value}</div>
+                  <div className="text-sm text-slate-300 mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* ========== TRUSTED BY ========== */}
-      {/* 👉 修改证书展示：替换下面的证书名称 */}
       <section className="bg-white py-8 border-b">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 text-slate-400">
@@ -63,7 +82,7 @@ export default function HomePage() {
             {[
               { icon: Shield, title: 'Quality Certified', desc: 'All products meet international standards including ISO, CE, DOT, and ECE.' },
               { icon: Truck, title: 'Global Shipping', desc: 'Efficient logistics to 50+ countries. FOB, CIF, DDP shipping terms available.' },
-              { icon: Award, title: 'OEM Experience', desc: '15+ years supplying OEM-grade parts to major manufacturers.' },
+              { icon: Award, title: 'OEM Experience', desc: '15+ years supplying OEM-grade parts to major manufacturers worldwide.' },
               { icon: Users, title: '24/7 Support', desc: 'Dedicated sales team ready to assist with inquiries and after-sales support.' },
             ].map((item, i) => (
               <div key={i} className="bg-white rounded-xl p-6 shadow-sm card-hover border border-slate-100">
@@ -78,7 +97,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ========== PRODUCT CATEGORIES PREVIEW ========== */}
+      {/* ========== PRODUCT CATEGORIES ========== */}
       <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-end mb-10">
@@ -92,31 +111,65 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: 'Engine Parts', nameZh: '发动机配件', count: '24+', desc: 'Turbochargers, pistons, cylinders, gaskets and more.' },
-              { name: 'Brake Systems', nameZh: '制动系统', count: '18+', desc: 'Brake chambers, compressors, valves, slack adjusters.' },
-              { name: 'Suspension', nameZh: '悬挂配件', count: '15+', desc: 'Leaf springs, shock absorbers, torsion bars, bushings.' },
-              { name: 'Electrical', nameZh: '电气系统', count: '12+', desc: 'Alternators, starters, sensors, wiring harnesses.' },
+              { name: 'Engine Parts', nameZh: '发动机配件', count: '24+', slug: 'engine-parts' },
+              { name: 'Brake Systems', nameZh: '制动系统', count: '18+', slug: 'brake-systems' },
+              { name: 'Suspension', nameZh: '悬挂配件', count: '15+', slug: 'suspension-parts' },
+              { name: 'Electrical', nameZh: '电气系统', count: '12+', slug: 'electrical-systems' },
             ].map((cat, i) => (
-              <Link key={i} href={`/products?cat=${['engine-parts','brake-systems','suspension-parts','electrical-systems'][i]}`} className="group bg-[#f8fafc] rounded-xl p-6 border border-slate-100 card-hover">
-                {/* 👉 修改分类图片：替换下方 /images/placeholder.jpg 为实际图片路径 */}
-                <div className="bg-[#1e3a5f]/10 rounded-lg h-32 mb-4 flex items-center justify-center text-[#1e3a5f] font-bold text-2xl">
-                  {/* <Image src="/images/placeholder.jpg" /> */}
-                  {cat.name.slice(0, 2).toUpperCase()}
+              <Link key={i} href={`/products?cat=${cat.slug}`} className="group bg-[#f8fafc] rounded-xl p-6 border border-slate-100 card-hover">
+                <div className="flex justify-center items-center h-24 mb-4">
+                  <Image
+                    src={products.find(p => p.categorySlug === cat.slug)?.image || '/images/placeholder.svg'}
+                    alt={cat.name}
+                    width={120}
+                    height={80}
+                    className="object-contain group-hover:scale-110 transition-transform duration-300"
+                    unoptimized
+                  />
                 </div>
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-semibold text-[#1e3a5f]">{cat.name}</h3>
                   <span className="text-xs bg-[#1e3a5f]/10 text-[#1e3a5f] px-2 py-0.5 rounded-full">{cat.count} items</span>
                 </div>
-                <p className="text-sm text-slate-500 mb-3">{cat.desc}</p>
                 <span className="text-[#f97316] text-sm font-medium group-hover:gap-2 transition-all">
                   View Products →
                 </span>
               </Link>
             ))}
           </div>
-          <div className="mt-6 text-center md:hidden">
-            <Link href="/products" className="inline-flex items-center gap-1 text-[#f97316] font-medium">
-              View All Products <ArrowRight className="w-4 h-4" />
+        </div>
+      </section>
+
+      {/* ========== FEATURED PRODUCTS ========== */}
+      <section className="py-16 md:py-20 bg-[#f8fafc]">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1e3a5f] mb-3">Featured Products</h2>
+            <p className="text-slate-500">Our most popular truck parts and machinery components.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredProducts.map(product => (
+              <Link key={product.id} href={`/products/${product.slug}`} className="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-100 card-hover group">
+                <div className="relative h-48 bg-[#1e3a5f]/5 overflow-hidden">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                    unoptimized
+                  />
+                </div>
+                <div className="p-5">
+                  <span className="text-xs bg-[#f97316]/10 text-[#f97316] px-2 py-0.5 rounded-full">{product.category}</span>
+                  <h3 className="font-semibold text-[#1e3a5f] mt-2 mb-1 group-hover:text-[#f97316] transition-colors">{product.name}</h3>
+                  <p className="text-sm text-slate-500 line-clamp-2">{product.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link href="/products" className="inline-flex items-center gap-2 bg-[#1e3a5f] hover:bg-[#2c5282] text-white font-semibold px-8 py-3 rounded-lg transition-colors">
+              View All Products <ArrowRight className="w-5 h-5" />
             </Link>
           </div>
         </div>
